@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier as SkKNN
 
 from autoalgo import KNeighborsClassifier
 
-BACKENDS = ["numpy", "rust", "rust-blas"]
+BACKENDS = ["numpy", "rust", "rust-blas", "mlx"]
 
 
 @pytest.mark.parametrize("backend", BACKENDS)

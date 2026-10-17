@@ -5,12 +5,13 @@ build-backend = "maturin"
 [project]
 name = "autoalgo"
 version = "0.1.0"
-description = "Speed experiment: k-nearest neighbors three ways (scikit-learn, autoalgo on NumPy, autoalgo in Rust)"
+description = "Speed experiment: k-nearest neighbors raced across scikit-learn, NumPy, Rust, Rust + Accelerate, and MLX"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26", "scikit-learn>=1.3"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+mlx = ["mlx"]
 
 [tool.maturin]
 python-source = "python"

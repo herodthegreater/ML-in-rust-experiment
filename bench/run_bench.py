@@ -5,6 +5,7 @@ Engines:
   autoalgo-numpy  autoalgo built on top of NumPy + the system BLAS
   autoalgo-rust   autoalgo's from-scratch Rust engine
   autoalgo-rust-blas  the same Rust engine with Accelerate doing the matrix math
+  autoalgo-mlx    autoalgo in pure Python on the Apple GPU via MLX
 
 Measures, per training size: fit time, time to predict a fixed batch of
 queries, accuracy, and agreement with scikit-learn. Then single-row latency,
@@ -42,6 +43,7 @@ def engines():
         "autoalgo-numpy": lambda: KNeighborsClassifier(K, backend="numpy"),
         "autoalgo-rust": lambda: KNeighborsClassifier(K, backend="rust"),
         "autoalgo-rust-blas": lambda: KNeighborsClassifier(K, backend="rust-blas"),
+        "autoalgo-mlx": lambda: KNeighborsClassifier(K, backend="mlx"),
     }
 
 
@@ -73,7 +75,16 @@ def machine_info():
         "numpy": np.__version__,
         "numpy_blas": blas,
         "sklearn": sklearn.__version__,
+        "mlx": _mlx_version(),
     }
+
+
+def _mlx_version():
+    try:
+        import mlx.core as mx
+        return mx.__version__
+    except ImportError:
+        return "not installed"
 
 
 def load():
