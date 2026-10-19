@@ -23,6 +23,7 @@ candidate, so it is dropped). Ties in the vote go to the smallest class.
 import numpy as np
 
 from . import _rust
+from ._common import mlx as _mlx
 
 # Cap on the temporary distance block the NumPy engine materializes per chunk.
 _CHUNK_BYTES = 128 * 1024 * 1024
@@ -144,11 +145,3 @@ class KNeighborsClassifier:
             mx.eval(part)  # run this chunk now so its distance block can be freed
             parts.append(part)
         return np.array(mx.concatenate(parts)).astype(np.int64)
-
-
-def _mlx():
-    try:
-        import mlx.core as mx
-    except ImportError as e:
-        raise ImportError("backend='mlx' needs MLX on Apple silicon: pip install mlx") from e
-    return mx

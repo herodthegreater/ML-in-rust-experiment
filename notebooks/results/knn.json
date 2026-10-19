@@ -1,0 +1,370 @@
+{
+  "machine": {
+    "chip": "Apple M4",
+    "cores": "4 performance + 6 efficiency",
+    "ram_gb": 24,
+    "os": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5",
+    "numpy": "2.5.4 (accelerate)",
+    "sklearn": "1.9.1",
+    "mlx": "0.32.4"
+  },
+  "notes": {
+    "latency": [
+      {
+        "train rows": 10000,
+        "engine": "sklearn",
+        "median \u00b5s": 514.5414907019585,
+        "p95 \u00b5s": 913.1565428106115,
+        "vs sklearn": 1.0
+      },
+      {
+        "train rows": 10000,
+        "engine": "autoalgo-numpy",
+        "median \u00b5s": 93.64553261548281,
+        "p95 \u00b5s": 124.08511829562485,
+        "vs sklearn": 5.494565264685005
+      },
+      {
+        "train rows": 10000,
+        "engine": "autoalgo-rust",
+        "median \u00b5s": 48.50002005696297,
+        "p95 \u00b5s": 49.41907245665789,
+        "vs sklearn": 10.609098513725002
+      },
+      {
+        "train rows": 10000,
+        "engine": "autoalgo-rust-blas",
+        "median \u00b5s": 36.792014725506306,
+        "p95 \u00b5s": 37.30446915142238,
+        "vs sklearn": 13.985140377356103
+      },
+      {
+        "train rows": 10000,
+        "engine": "autoalgo-mlx",
+        "median \u00b5s": 395.60397271998227,
+        "p95 \u00b5s": 492.0122242765501,
+        "vs sklearn": 1.300647936278848
+      },
+      {
+        "train rows": 200000,
+        "engine": "sklearn",
+        "median \u00b5s": 2437.8539819736034,
+        "p95 \u00b5s": 2951.9923322368413,
+        "vs sklearn": 1.0
+      },
+      {
+        "train rows": 200000,
+        "engine": "autoalgo-numpy",
+        "median \u00b5s": 1404.7495205886662,
+        "p95 \u00b5s": 2186.1729444935927,
+        "vs sklearn": 1.7354367780471
+      },
+      {
+        "train rows": 200000,
+        "engine": "autoalgo-rust",
+        "median \u00b5s": 873.2080168556422,
+        "p95 \u00b5s": 1395.2208479167896,
+        "vs sklearn": 2.791836463838406
+      },
+      {
+        "train rows": 200000,
+        "engine": "autoalgo-rust-blas",
+        "median \u00b5s": 887.3745100572705,
+        "p95 \u00b5s": 1145.0981866801158,
+        "vs sklearn": 2.7472661816894717
+      },
+      {
+        "train rows": 200000,
+        "engine": "autoalgo-mlx",
+        "median \u00b5s": 989.207997918129,
+        "p95 \u00b5s": 1543.512137141079,
+        "vs sklearn": 2.4644503351208957
+      }
+    ],
+    "by_k": [
+      {
+        "k": 1,
+        "engine": "sklearn",
+        "predict s": 0.19343264598865062,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 1,
+        "engine": "autoalgo-numpy",
+        "predict s": 0.6921860204893164,
+        "vs sklearn": 0.2794518240225514
+      },
+      {
+        "k": 1,
+        "engine": "autoalgo-rust",
+        "predict s": 0.32423206249950454,
+        "vs sklearn": 0.5965870386089476
+      },
+      {
+        "k": 1,
+        "engine": "autoalgo-rust-blas",
+        "predict s": 0.06603112551965751,
+        "vs sklearn": 2.929416157400885
+      },
+      {
+        "k": 1,
+        "engine": "autoalgo-mlx",
+        "predict s": 0.2038123335223645,
+        "vs sklearn": 0.9490723286744818
+      },
+      {
+        "k": 5,
+        "engine": "sklearn",
+        "predict s": 0.1920736254833173,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 5,
+        "engine": "autoalgo-numpy",
+        "predict s": 1.5644380204903428,
+        "vs sklearn": 0.12277483861144946
+      },
+      {
+        "k": 5,
+        "engine": "autoalgo-rust",
+        "predict s": 0.3251075205334928,
+        "vs sklearn": 0.5908003148254756
+      },
+      {
+        "k": 5,
+        "engine": "autoalgo-rust-blas",
+        "predict s": 0.06609900001785718,
+        "vs sklearn": 2.905847674419084
+      },
+      {
+        "k": 5,
+        "engine": "autoalgo-mlx",
+        "predict s": 0.210735978995217,
+        "vs sklearn": 0.9114420157351333
+      },
+      {
+        "k": 25,
+        "engine": "sklearn",
+        "predict s": 0.20100864599226043,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 25,
+        "engine": "autoalgo-numpy",
+        "predict s": 1.5537035835150164,
+        "vs sklearn": 0.12937387036046422
+      },
+      {
+        "k": 25,
+        "engine": "autoalgo-rust",
+        "predict s": 0.3219687505043112,
+        "vs sklearn": 0.6243110416070299
+      },
+      {
+        "k": 25,
+        "engine": "autoalgo-rust-blas",
+        "predict s": 0.06540872951154597,
+        "vs sklearn": 3.0731165013192667
+      },
+      {
+        "k": 25,
+        "engine": "autoalgo-mlx",
+        "predict s": 0.3420733750099316,
+        "vs sklearn": 0.587618507246945
+      },
+      {
+        "k": 100,
+        "engine": "sklearn",
+        "predict s": 0.23400410450994968,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 100,
+        "engine": "autoalgo-numpy",
+        "predict s": 1.6564481664681807,
+        "vs sklearn": 0.14126859460316518
+      },
+      {
+        "k": 100,
+        "engine": "autoalgo-rust",
+        "predict s": 0.34345793750253506,
+        "vs sklearn": 0.6813180857356732
+      },
+      {
+        "k": 100,
+        "engine": "autoalgo-rust-blas",
+        "predict s": 0.0759095624962356,
+        "vs sklearn": 3.082669650764409
+      },
+      {
+        "k": 100,
+        "engine": "autoalgo-mlx",
+        "predict s": 0.8958225000242237,
+        "vs sklearn": 0.2612170430008423
+      }
+    ]
+  },
+  "rows": [
+    {
+      "train rows": 10000,
+      "engine": "sklearn",
+      "predict s": 0.01765583298401907,
+      "accuracy": 0.7615,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "train rows": 10000,
+      "engine": "autoalgo-numpy",
+      "predict s": 0.1300272920052521,
+      "accuracy": 0.7615,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.13578559325303732
+    },
+    {
+      "train rows": 10000,
+      "engine": "autoalgo-rust",
+      "predict s": 0.016659167013131082,
+      "accuracy": 0.7615,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0598268791052037
+    },
+    {
+      "train rows": 10000,
+      "engine": "autoalgo-rust-blas",
+      "predict s": 0.004603167006280273,
+      "accuracy": 0.7615,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 3.8355838404147744
+    },
+    {
+      "train rows": 10000,
+      "engine": "autoalgo-mlx",
+      "predict s": 0.010280292015522718,
+      "accuracy": 0.7615,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.7174446948938473
+    },
+    {
+      "train rows": 50000,
+      "engine": "sklearn",
+      "predict s": 0.058489999966695905,
+      "accuracy": 0.8445,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "train rows": 50000,
+      "engine": "autoalgo-numpy",
+      "predict s": 0.7145894590066746,
+      "accuracy": 0.8445,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.08185119333834112
+    },
+    {
+      "train rows": 50000,
+      "engine": "autoalgo-rust",
+      "predict s": 0.09383029199671,
+      "accuracy": 0.8445,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.623359458038847
+    },
+    {
+      "train rows": 50000,
+      "engine": "autoalgo-rust-blas",
+      "predict s": 0.02333400002680719,
+      "accuracy": 0.8445,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 2.506642663045336
+    },
+    {
+      "train rows": 50000,
+      "engine": "autoalgo-mlx",
+      "predict s": 0.05588800000259653,
+      "accuracy": 0.8445,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.046557399870786
+    },
+    {
+      "train rows": 200000,
+      "engine": "sklearn",
+      "predict s": 0.2303805000265129,
+      "accuracy": 0.898,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "train rows": 200000,
+      "engine": "autoalgo-numpy",
+      "predict s": 1.553852499986533,
+      "accuracy": 0.898,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.14826407270220923
+    },
+    {
+      "train rows": 200000,
+      "engine": "autoalgo-rust",
+      "predict s": 0.37870658398605883,
+      "accuracy": 0.898,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.6083350798965613
+    },
+    {
+      "train rows": 200000,
+      "engine": "autoalgo-rust-blas",
+      "predict s": 0.07889049994992092,
+      "accuracy": 0.898,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 2.920256560330542
+    },
+    {
+      "train rows": 200000,
+      "engine": "autoalgo-mlx",
+      "predict s": 0.2161676250398159,
+      "accuracy": 0.898,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0657493229343622
+    },
+    {
+      "train rows": 579012,
+      "engine": "sklearn",
+      "predict s": 0.5642745000077412,
+      "accuracy": 0.925,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "train rows": 579012,
+      "engine": "autoalgo-numpy",
+      "predict s": 4.5268462499952875,
+      "accuracy": 0.925,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.124650688105064
+    },
+    {
+      "train rows": 579012,
+      "engine": "autoalgo-rust",
+      "predict s": 0.9210355000104755,
+      "accuracy": 0.925,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.61265228104815
+    },
+    {
+      "train rows": 579012,
+      "engine": "autoalgo-rust-blas",
+      "predict s": 0.1871109590283595,
+      "accuracy": 0.925,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 3.015721275428965
+    },
+    {
+      "train rows": 579012,
+      "engine": "autoalgo-mlx",
+      "predict s": 0.6322236249689013,
+      "accuracy": 0.925,
+      "agrees with sklearn": 1.0,
+      "vs sklearn": 0.8925235908979161
+    }
+  ]
+}
