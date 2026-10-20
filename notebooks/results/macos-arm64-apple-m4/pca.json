@@ -1,0 +1,290 @@
+{
+  "machine": {
+    "machine": "macos-arm64-apple-m4",
+    "cpu": "Apple M4",
+    "cores": "4 performance + 6 efficiency",
+    "ram_gb": 24,
+    "os": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5",
+    "numpy": "2.5.4 (BLAS: accelerate)",
+    "sklearn": "1.9.1",
+    "rust-blas matrix library": "Apple Accelerate",
+    "mlx": "0.32.4 (Device(gpu, 0))"
+  },
+  "notes": {
+    "by_features": [
+      {
+        "rows": 500000,
+        "features": 50,
+        "engine": "sklearn (svd_solver=full)",
+        "fit s": 0.2605130835145246,
+        "solver used": "full",
+        "variance ratio error": 0.0,
+        "vs sklearn default": 0.04029324109412653
+      },
+      {
+        "rows": 500000,
+        "features": 50,
+        "engine": "sklearn (svd_solver=auto)",
+        "fit s": 0.01049691648222506,
+        "solver used": "covariance_eigh",
+        "variance ratio error": 3.707408905029297e-05,
+        "vs sklearn default": 1.0
+      },
+      {
+        "rows": 500000,
+        "features": 50,
+        "engine": "sklearn (svd_solver=randomized)",
+        "fit s": 0.23408472901792265,
+        "solver used": "randomized",
+        "variance ratio error": 9.685754776000977e-07,
+        "vs sklearn default": 0.04484238047592317
+      },
+      {
+        "rows": 500000,
+        "features": 50,
+        "engine": "numpy",
+        "fit s": 0.02201425048406236,
+        "solver used": "covariance eigh",
+        "variance ratio error": 6.743954298088495e-06,
+        "vs sklearn default": 0.4768237051642755
+      },
+      {
+        "rows": 500000,
+        "features": 50,
+        "engine": "mlx",
+        "fit s": 0.01741058350307867,
+        "solver used": "covariance eigh",
+        "variance ratio error": 2.487432603781592e-07,
+        "vs sklearn default": 0.6029043472534346
+      },
+      {
+        "rows": 500000,
+        "features": 200,
+        "engine": "sklearn (svd_solver=full)",
+        "fit s": 1.604890312475618,
+        "solver used": "full",
+        "variance ratio error": 0.0,
+        "vs sklearn default": 0.026927839661710792
+      },
+      {
+        "rows": 500000,
+        "features": 200,
+        "engine": "sklearn (svd_solver=auto)",
+        "fit s": 0.04321622900897637,
+        "solver used": "covariance_eigh",
+        "variance ratio error": 3.777444362640381e-05,
+        "vs sklearn default": 1.0
+      },
+      {
+        "rows": 500000,
+        "features": 200,
+        "engine": "sklearn (svd_solver=randomized)",
+        "fit s": 0.511374353984138,
+        "solver used": "randomized",
+        "variance ratio error": 2.980232238769531e-07,
+        "vs sklearn default": 0.08450996549255356
+      },
+      {
+        "rows": 500000,
+        "features": 200,
+        "engine": "numpy",
+        "fit s": 0.08092179198865779,
+        "solver used": "covariance eigh",
+        "variance ratio error": 9.387770773805482e-07,
+        "vs sklearn default": 0.5340493326573102
+      },
+      {
+        "rows": 500000,
+        "features": 200,
+        "engine": "mlx",
+        "fit s": 0.0767002085049171,
+        "solver used": "covariance eigh",
+        "variance ratio error": 3.758429078237757e-07,
+        "vs sklearn default": 0.5634434358311537
+      },
+      {
+        "rows": 500000,
+        "features": 400,
+        "engine": "sklearn (svd_solver=full)",
+        "fit s": 3.431633520987816,
+        "solver used": "full",
+        "variance ratio error": 0.0,
+        "vs sklearn default": 0.02974645642367188
+      },
+      {
+        "rows": 500000,
+        "features": 400,
+        "engine": "sklearn (svd_solver=auto)",
+        "fit s": 0.10207893699407578,
+        "solver used": "covariance_eigh",
+        "variance ratio error": 3.941357135772705e-05,
+        "vs sklearn default": 1.0
+      },
+      {
+        "rows": 500000,
+        "features": 400,
+        "engine": "sklearn (svd_solver=randomized)",
+        "fit s": 0.7086220415076241,
+        "solver used": "randomized",
+        "variance ratio error": 3.5762786865234375e-07,
+        "vs sklearn default": 0.14405272629806776
+      },
+      {
+        "rows": 500000,
+        "features": 400,
+        "engine": "numpy",
+        "fit s": 0.17968829147866927,
+        "solver used": "covariance eigh",
+        "variance ratio error": 4.950457127284036e-07,
+        "vs sklearn default": 0.568088973154901
+      },
+      {
+        "rows": 500000,
+        "features": 400,
+        "engine": "mlx",
+        "fit s": 0.22774624999146909,
+        "solver used": "covariance eigh",
+        "variance ratio error": 3.966879851824423e-07,
+        "vs sklearn default": 0.44821347002595846
+      }
+    ]
+  },
+  "rows": [
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=full)",
+      "fit s": 0.13022668799385428,
+      "solver used": "full",
+      "variance ratio error": 0.0,
+      "vs sklearn default": 0.0403482310319289
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=auto)",
+      "fit s": 0.005254416493698955,
+      "solver used": "covariance_eigh",
+      "variance ratio error": 3.56137752532959e-06,
+      "vs sklearn default": 1.0
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=randomized)",
+      "fit s": 0.05281141650630161,
+      "solver used": "randomized",
+      "variance ratio error": 2.1606683731079102e-07,
+      "vs sklearn default": 0.09949395114353697
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.008267249999335036,
+      "solver used": "covariance eigh",
+      "variance ratio error": 2.2112076584479556e-06,
+      "vs sklearn default": 0.6355700497894204
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.008055437501752749,
+      "solver used": "covariance eigh",
+      "variance ratio error": 1.9610055010388372e-07,
+      "vs sklearn default": 0.6522819514837856
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=full)",
+      "fit s": 1.7918837079778314,
+      "solver used": "full",
+      "variance ratio error": 0.0,
+      "vs sklearn default": 0.024872707861652955
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=auto)",
+      "fit s": 0.044568999990588054,
+      "solver used": "covariance_eigh",
+      "variance ratio error": 0.00011213123798370361,
+      "vs sklearn default": 1.0
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=randomized)",
+      "fit s": 0.5639935004874133,
+      "solver used": "randomized",
+      "variance ratio error": 1.043081283569336e-06,
+      "vs sklearn default": 0.07902396029754018
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.077602332981769,
+      "solver used": "covariance eigh",
+      "variance ratio error": 2.605720984427684e-06,
+      "vs sklearn default": 0.5743255167477836
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.06946385398623534,
+      "solver used": "covariance eigh",
+      "variance ratio error": 6.177199444457049e-07,
+      "vs sklearn default": 0.6416142703429565
+    },
+    {
+      "rows": 3000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=full)",
+      "fit s": 5.599235937494086,
+      "solver used": "full",
+      "variance ratio error": 0.0,
+      "vs sklearn default": 0.02374330283283781
+    },
+    {
+      "rows": 3000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=auto)",
+      "fit s": 0.1329443544964306,
+      "solver used": "covariance_eigh",
+      "variance ratio error": 0.00033971667289733887,
+      "vs sklearn default": 1.0
+    },
+    {
+      "rows": 3000000,
+      "features": 100,
+      "engine": "sklearn (svd_solver=randomized)",
+      "fit s": 2.0180794164480176,
+      "solver used": "randomized",
+      "variance ratio error": 1.0848045349121094e-05,
+      "vs sklearn default": 0.06587667136034883
+    },
+    {
+      "rows": 3000000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.23561350000090897,
+      "solver used": "covariance eigh",
+      "variance ratio error": 2.1957684921414256e-06,
+      "vs sklearn default": 0.5642476110066601
+    },
+    {
+      "rows": 3000000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.22764164599357173,
+      "solver used": "covariance eigh",
+      "variance ratio error": 2.6290390993943813e-06,
+      "vs sklearn default": 0.5840071745931092
+    }
+  ]
+}

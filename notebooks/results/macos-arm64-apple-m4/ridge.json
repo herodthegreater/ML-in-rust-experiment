@@ -1,0 +1,164 @@
+{
+  "machine": {
+    "machine": "macos-arm64-apple-m4",
+    "cpu": "Apple M4",
+    "cores": "4 performance + 6 efficiency",
+    "ram_gb": 24,
+    "os": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5",
+    "numpy": "2.5.4 (BLAS: accelerate)",
+    "sklearn": "1.9.1",
+    "rust-blas matrix library": "Apple Accelerate",
+    "mlx": "0.32.4 (Device(gpu, 0))"
+  },
+  "notes": {
+    "by_features": [
+      {
+        "rows": 1000000,
+        "features": 20,
+        "engine": "sklearn",
+        "fit s": 0.022102125047240406,
+        "max error vs exact": 0.0010814001438861354,
+        "vs sklearn": 1.0
+      },
+      {
+        "rows": 1000000,
+        "features": 20,
+        "engine": "numpy",
+        "fit s": 0.021038625040091574,
+        "max error vs exact": 0.0002698233006244166,
+        "vs sklearn": 1.0505498817114811
+      },
+      {
+        "rows": 1000000,
+        "features": 20,
+        "engine": "mlx",
+        "fit s": 0.025554749998264015,
+        "max error vs exact": 5.893454519512176e-06,
+        "vs sklearn": 0.864893025709187
+      },
+      {
+        "rows": 1000000,
+        "features": 100,
+        "engine": "sklearn",
+        "fit s": 0.10382291697897017,
+        "max error vs exact": 0.0012505451110818022,
+        "vs sklearn": 1.0
+      },
+      {
+        "rows": 1000000,
+        "features": 100,
+        "engine": "numpy",
+        "fit s": 0.08624808397144079,
+        "max error vs exact": 3.1510916135513156e-05,
+        "vs sklearn": 1.2037707065277985
+      },
+      {
+        "rows": 1000000,
+        "features": 100,
+        "engine": "mlx",
+        "fit s": 0.08161462499992922,
+        "max error vs exact": 1.3840838314127524e-05,
+        "vs sklearn": 1.272111670905309
+      },
+      {
+        "rows": 1000000,
+        "features": 500,
+        "engine": "sklearn",
+        "fit s": 0.5453193749999627,
+        "max error vs exact": 0.0016887444214210845,
+        "vs sklearn": 1.0
+      },
+      {
+        "rows": 1000000,
+        "features": 500,
+        "engine": "numpy",
+        "fit s": 0.4977204999886453,
+        "max error vs exact": 3.7885023496109227e-06,
+        "vs sklearn": 1.0956337442649104
+      },
+      {
+        "rows": 1000000,
+        "features": 500,
+        "engine": "mlx",
+        "fit s": 0.9497301660012454,
+        "max error vs exact": 1.8393449319642485e-05,
+        "vs sklearn": 0.5741834833950591
+      }
+    ]
+  },
+  "rows": [
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "sklearn",
+      "fit s": 0.009992875042371452,
+      "max error vs exact": 4.72488505069979e-05,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.008527916972525418,
+      "max error vs exact": 3.926182810709555e-05,
+      "vs sklearn": 1.1717838101104552
+    },
+    {
+      "rows": 100000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.007671666971873492,
+      "max error vs exact": 2.6286925045582166e-06,
+      "vs sklearn": 1.3025689304564663
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "sklearn",
+      "fit s": 0.10292224999284372,
+      "max error vs exact": 0.0012505451110818022,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.08547229104442522,
+      "max error vs exact": 3.1510916135513156e-05,
+      "vs sklearn": 1.2041592513221469
+    },
+    {
+      "rows": 1000000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.08127108297776431,
+      "max error vs exact": 1.3840838314127524e-05,
+      "vs sklearn": 1.2664067737475966
+    },
+    {
+      "rows": 4000000,
+      "features": 100,
+      "engine": "sklearn",
+      "fit s": 0.41088020900497213,
+      "max error vs exact": 0.011334612272332123,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 4000000,
+      "features": 100,
+      "engine": "numpy",
+      "fit s": 0.3397000830154866,
+      "max error vs exact": 2.8803251336029234e-05,
+      "vs sklearn": 1.2095381471727238
+    },
+    {
+      "rows": 4000000,
+      "features": 100,
+      "engine": "mlx",
+      "fit s": 0.36265650001587346,
+      "max error vs exact": 6.372357107053972e-05,
+      "vs sklearn": 1.1329735134679453
+    }
+  ]
+}

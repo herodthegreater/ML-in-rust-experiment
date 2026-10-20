@@ -1,0 +1,230 @@
+{
+  "machine": {
+    "machine": "macos-arm64-apple-m4",
+    "cpu": "Apple M4",
+    "cores": "4 performance + 6 efficiency",
+    "ram_gb": 24,
+    "os": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5",
+    "numpy": "2.5.4 (BLAS: accelerate)",
+    "sklearn": "1.9.1",
+    "rust-blas matrix library": "Apple Accelerate",
+    "mlx": "0.32.4 (Device(gpu, 0))"
+  },
+  "notes": {
+    "by_rows": [
+      {
+        "depth": 16,
+        "train rows": 50000,
+        "engine": "sklearn",
+        "fit s": 0.2835517500061542,
+        "predict s": 0.004190500010736287,
+        "test accuracy": 0.8208,
+        "nodes": 5925,
+        "vs sklearn": 1.0
+      },
+      {
+        "depth": 16,
+        "train rows": 50000,
+        "engine": "numpy",
+        "fit s": 2.0277716660057195,
+        "predict s": 0.008885250019375235,
+        "test accuracy": 0.81434,
+        "nodes": 6189,
+        "vs sklearn": 0.13983416119266084
+      },
+      {
+        "depth": 16,
+        "train rows": 50000,
+        "engine": "rust",
+        "fit s": 0.24754404200939462,
+        "predict s": 0.0005522090359590948,
+        "test accuracy": 0.81434,
+        "nodes": 6189,
+        "vs sklearn": 1.1454598046653575
+      },
+      {
+        "depth": 16,
+        "train rows": 150000,
+        "engine": "sklearn",
+        "fit s": 0.8731820420362055,
+        "predict s": 0.004561583045870066,
+        "test accuracy": 0.84268,
+        "nodes": 8433,
+        "vs sklearn": 1.0
+      },
+      {
+        "depth": 16,
+        "train rows": 150000,
+        "engine": "numpy",
+        "fit s": 3.0233922080369666,
+        "predict s": 0.005658916023094207,
+        "test accuracy": 0.8423,
+        "nodes": 8333,
+        "vs sklearn": 0.2888087227700923
+      },
+      {
+        "depth": 16,
+        "train rows": 150000,
+        "engine": "rust",
+        "fit s": 0.4494482080335729,
+        "predict s": 0.0005255829892121255,
+        "test accuracy": 0.8423,
+        "nodes": 8333,
+        "vs sklearn": 1.9427867915116497
+      },
+      {
+        "depth": 16,
+        "train rows": 531012,
+        "engine": "sklearn",
+        "fit s": 3.3734803330153227,
+        "predict s": 0.004623958026058972,
+        "test accuracy": 0.86766,
+        "nodes": 13469,
+        "vs sklearn": 1.0
+      },
+      {
+        "depth": 16,
+        "train rows": 531012,
+        "engine": "numpy",
+        "fit s": 6.404170834051911,
+        "predict s": 0.0061746250139549375,
+        "test accuracy": 0.87172,
+        "nodes": 14719,
+        "vs sklearn": 0.526763014359023
+      },
+      {
+        "depth": 16,
+        "train rows": 531012,
+        "engine": "rust",
+        "fit s": 1.1586724589578807,
+        "predict s": 0.0005904170102439821,
+        "test accuracy": 0.87172,
+        "nodes": 14719,
+        "vs sklearn": 2.9115047198493507
+      }
+    ]
+  },
+  "rows": [
+    {
+      "depth": 8,
+      "train rows": 531012,
+      "engine": "sklearn",
+      "fit s": 1.9843005419825204,
+      "predict s": 0.0024261249927803874,
+      "test accuracy": 0.74468,
+      "nodes": 487,
+      "vs sklearn": 1.0
+    },
+    {
+      "depth": 8,
+      "train rows": 531012,
+      "engine": "numpy",
+      "fit s": 1.4921045000082813,
+      "predict s": 0.003565083956345916,
+      "test accuracy": 0.74724,
+      "nodes": 445,
+      "vs sklearn": 1.32986700460424
+    },
+    {
+      "depth": 8,
+      "train rows": 531012,
+      "engine": "rust",
+      "fit s": 0.578988166002091,
+      "predict s": 0.00031466694781556726,
+      "test accuracy": 0.74724,
+      "nodes": 445,
+      "vs sklearn": 3.42718670000477
+    },
+    {
+      "depth": 12,
+      "train rows": 531012,
+      "engine": "sklearn",
+      "fit s": 2.720794458000455,
+      "predict s": 0.0032528750016354024,
+      "test accuracy": 0.81018,
+      "nodes": 3761,
+      "vs sklearn": 1.0
+    },
+    {
+      "depth": 12,
+      "train rows": 531012,
+      "engine": "numpy",
+      "fit s": 2.859749541967176,
+      "predict s": 0.005203625012654811,
+      "test accuracy": 0.81296,
+      "nodes": 3797,
+      "vs sklearn": 0.9514100511504459
+    },
+    {
+      "depth": 12,
+      "train rows": 531012,
+      "engine": "rust",
+      "fit s": 0.7617174169863574,
+      "predict s": 0.0004098750068806112,
+      "test accuracy": 0.81296,
+      "nodes": 3797,
+      "vs sklearn": 3.571921026520502
+    },
+    {
+      "depth": 16,
+      "train rows": 531012,
+      "engine": "sklearn",
+      "fit s": 3.360865249997005,
+      "predict s": 0.004750541993416846,
+      "test accuracy": 0.86766,
+      "nodes": 13469,
+      "vs sklearn": 1.0
+    },
+    {
+      "depth": 16,
+      "train rows": 531012,
+      "engine": "numpy",
+      "fit s": 6.347013916994911,
+      "predict s": 0.006175582995638251,
+      "test accuracy": 0.87172,
+      "nodes": 14719,
+      "vs sklearn": 0.5295191241030486
+    },
+    {
+      "depth": 16,
+      "train rows": 531012,
+      "engine": "rust",
+      "fit s": 1.155153125000652,
+      "predict s": 0.0006219589849933982,
+      "test accuracy": 0.87172,
+      "nodes": 14719,
+      "vs sklearn": 2.9094543201751786
+    },
+    {
+      "depth": 20,
+      "train rows": 531012,
+      "engine": "sklearn",
+      "fit s": 3.824146708007902,
+      "predict s": 0.005685290961991996,
+      "test accuracy": 0.90836,
+      "nodes": 27807,
+      "vs sklearn": 1.0
+    },
+    {
+      "depth": 20,
+      "train rows": 531012,
+      "engine": "numpy",
+      "fit s": 11.157755832944531,
+      "predict s": 0.0071664160350337625,
+      "test accuracy": 0.91108,
+      "nodes": 30719,
+      "vs sklearn": 0.3427343961692259
+    },
+    {
+      "depth": 20,
+      "train rows": 531012,
+      "engine": "rust",
+      "fit s": 1.6678878330276348,
+      "predict s": 0.000772374973166734,
+      "test accuracy": 0.91108,
+      "nodes": 30719,
+      "vs sklearn": 2.292808084741596
+    }
+  ]
+}

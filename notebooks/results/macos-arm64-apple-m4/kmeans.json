@@ -1,0 +1,302 @@
+{
+  "machine": {
+    "machine": "macos-arm64-apple-m4",
+    "cpu": "Apple M4",
+    "cores": "4 performance + 6 efficiency",
+    "ram_gb": 24,
+    "os": "macOS-26.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.5",
+    "numpy": "2.5.4 (BLAS: accelerate)",
+    "sklearn": "1.9.1",
+    "rust-blas matrix library": "Apple Accelerate",
+    "mlx": "0.32.4 (Device(gpu, 0))"
+  },
+  "notes": {
+    "covertype": [
+      {
+        "dataset": "covertype",
+        "engine": "sklearn",
+        "fit s": 0.15923666648450308,
+        "iterations": 22,
+        "s per iteration": 0.0072380302947501396,
+        "inertia vs sklearn": 0.0,
+        "labels agree": 1.0,
+        "vs sklearn": 1.0
+      },
+      {
+        "dataset": "covertype",
+        "engine": "numpy",
+        "fit s": 1.8764169169880915,
+        "iterations": 22,
+        "s per iteration": 0.08529167804491325,
+        "inertia vs sklearn": -3.4581609520412115e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 0.0848620927699266
+      },
+      {
+        "dataset": "covertype",
+        "engine": "rust",
+        "fit s": 0.08576643749256618,
+        "iterations": 22,
+        "s per iteration": 0.003898474431480281,
+        "inertia vs sklearn": -3.6587727081371924e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 1.8566314649399414
+      },
+      {
+        "dataset": "covertype",
+        "engine": "mlx",
+        "fit s": 0.3057752500171773,
+        "iterations": 22,
+        "s per iteration": 0.013898875000780787,
+        "inertia vs sklearn": -2.977475693777265e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 0.5207637520550069
+      }
+    ],
+    "by_k": [
+      {
+        "k": 8,
+        "engine": "sklearn",
+        "fit s": 0.12213912495644763,
+        "iterations": 30,
+        "s per iteration": 0.004071304165214921,
+        "inertia vs sklearn": 0.0,
+        "labels agree": 1.0,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 8,
+        "engine": "numpy",
+        "fit s": 1.4807248750003055,
+        "iterations": 30,
+        "s per iteration": 0.049357495833343513,
+        "inertia vs sklearn": 6.5650447389487e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 0.0824860357373428
+      },
+      {
+        "k": 8,
+        "engine": "rust",
+        "fit s": 0.05889537505572662,
+        "iterations": 30,
+        "s per iteration": 0.0019631791685242204,
+        "inertia vs sklearn": 6.626436630519095e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 2.0738321954971846
+      },
+      {
+        "k": 8,
+        "engine": "mlx",
+        "fit s": 0.29922329098917544,
+        "iterations": 30,
+        "s per iteration": 0.009974109699639182,
+        "inertia vs sklearn": 5.964243170453187e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 0.408187225508679
+      },
+      {
+        "k": 64,
+        "engine": "sklearn",
+        "fit s": 0.29395750002004206,
+        "iterations": 30,
+        "s per iteration": 0.009798583334001403,
+        "inertia vs sklearn": 0.0,
+        "labels agree": 1.0,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 64,
+        "engine": "numpy",
+        "fit s": 2.1976482499740086,
+        "iterations": 30,
+        "s per iteration": 0.0732549416658003,
+        "inertia vs sklearn": 7.262128287610636e-07,
+        "labels agree": 1.0,
+        "vs sklearn": 0.1337600318993354
+      },
+      {
+        "k": 64,
+        "engine": "rust",
+        "fit s": 0.16873041598591954,
+        "iterations": 30,
+        "s per iteration": 0.005624347199530652,
+        "inertia vs sklearn": 7.593965305474626e-07,
+        "labels agree": 0.999928,
+        "vs sklearn": 1.74217255556682
+      },
+      {
+        "k": 64,
+        "engine": "mlx",
+        "fit s": 0.606303000007756,
+        "iterations": 30,
+        "s per iteration": 0.020210100000258534,
+        "inertia vs sklearn": 8.334454515424028e-07,
+        "labels agree": 0.999928,
+        "vs sklearn": 0.4848359648827099
+      },
+      {
+        "k": 256,
+        "engine": "sklearn",
+        "fit s": 0.8758795000030659,
+        "iterations": 30,
+        "s per iteration": 0.02919598333343553,
+        "inertia vs sklearn": 0.0,
+        "labels agree": 1.0,
+        "vs sklearn": 1.0
+      },
+      {
+        "k": 256,
+        "engine": "numpy",
+        "fit s": 6.211272167041898,
+        "iterations": 30,
+        "s per iteration": 0.20704240556806325,
+        "inertia vs sklearn": 8.03412164263051e-06,
+        "labels agree": 0.989038,
+        "vs sklearn": 0.141014509821456
+      },
+      {
+        "k": 256,
+        "engine": "rust",
+        "fit s": 0.8309192089946009,
+        "iterations": 30,
+        "s per iteration": 0.027697306966486698,
+        "inertia vs sklearn": 3.6860181757969457e-06,
+        "labels agree": 0.987938,
+        "vs sklearn": 1.0541091005259902
+      },
+      {
+        "k": 256,
+        "engine": "mlx",
+        "fit s": 1.9144277080195025,
+        "iterations": 30,
+        "s per iteration": 0.06381425693398342,
+        "inertia vs sklearn": 6.169863968841227e-06,
+        "labels agree": 0.989534,
+        "vs sklearn": 0.45751505597940456
+      }
+    ]
+  },
+  "rows": [
+    {
+      "rows": 100000,
+      "engine": "sklearn",
+      "fit s": 0.04456329147797078,
+      "iterations": 30,
+      "s per iteration": 0.0014854430492656926,
+      "inertia vs sklearn": 0.0,
+      "labels agree": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 100000,
+      "engine": "numpy",
+      "fit s": 0.27981387500767596,
+      "iterations": 30,
+      "s per iteration": 0.009327129166922531,
+      "inertia vs sklearn": -2.425954448437295e-07,
+      "labels agree": 1.0,
+      "vs sklearn": 0.15926047797575552
+    },
+    {
+      "rows": 100000,
+      "engine": "rust",
+      "fit s": 0.022389021003618836,
+      "iterations": 30,
+      "s per iteration": 0.0007463007001206279,
+      "inertia vs sklearn": -2.3678615113098544e-07,
+      "labels agree": 1.0,
+      "vs sklearn": 1.990408221546079
+    },
+    {
+      "rows": 100000,
+      "engine": "mlx",
+      "fit s": 0.09436216650647111,
+      "iterations": 30,
+      "s per iteration": 0.0031454055502157037,
+      "inertia vs sklearn": -2.8679311947499286e-07,
+      "labels agree": 1.0,
+      "vs sklearn": 0.4722580365396204
+    },
+    {
+      "rows": 500000,
+      "engine": "sklearn",
+      "fit s": 0.18880489596631378,
+      "iterations": 30,
+      "s per iteration": 0.00629349653221046,
+      "inertia vs sklearn": 0.0,
+      "labels agree": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 500000,
+      "engine": "numpy",
+      "fit s": 1.5792408124834765,
+      "iterations": 30,
+      "s per iteration": 0.05264136041611588,
+      "inertia vs sklearn": 2.715481590698232e-07,
+      "labels agree": 0.99999,
+      "vs sklearn": 0.11955421521142409
+    },
+    {
+      "rows": 500000,
+      "engine": "rust",
+      "fit s": 0.10032754199346527,
+      "iterations": 30,
+      "s per iteration": 0.003344251399782176,
+      "inertia vs sklearn": 2.597468311549278e-07,
+      "labels agree": 0.99999,
+      "vs sklearn": 1.8818849960324093
+    },
+    {
+      "rows": 500000,
+      "engine": "mlx",
+      "fit s": 0.4376912915322464,
+      "iterations": 30,
+      "s per iteration": 0.014589709717741546,
+      "inertia vs sklearn": 2.9992896477537556e-07,
+      "labels agree": 0.999998,
+      "vs sklearn": 0.4313654386527903
+    },
+    {
+      "rows": 2000000,
+      "engine": "sklearn",
+      "fit s": 0.6412761039682664,
+      "iterations": 30,
+      "s per iteration": 0.021375870132275546,
+      "inertia vs sklearn": 0.0,
+      "labels agree": 1.0,
+      "vs sklearn": 1.0
+    },
+    {
+      "rows": 2000000,
+      "engine": "numpy",
+      "fit s": 6.816662561992416,
+      "iterations": 30,
+      "s per iteration": 0.2272220853997472,
+      "inertia vs sklearn": 2.1813378936474948e-06,
+      "labels agree": 0.9999005,
+      "vs sklearn": 0.0940747907258637
+    },
+    {
+      "rows": 2000000,
+      "engine": "rust",
+      "fit s": 0.3558494585158769,
+      "iterations": 30,
+      "s per iteration": 0.011861648617195897,
+      "inertia vs sklearn": 2.1799479594797333e-06,
+      "labels agree": 0.999897,
+      "vs sklearn": 1.8020994232864755
+    },
+    {
+      "rows": 2000000,
+      "engine": "mlx",
+      "fit s": 1.726235395501135,
+      "iterations": 30,
+      "s per iteration": 0.05754117985003783,
+      "inertia vs sklearn": 2.135373168288268e-06,
+      "labels agree": 0.999903,
+      "vs sklearn": 0.3714882139710156
+    }
+  ]
+}
