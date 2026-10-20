@@ -1,17 +1,19 @@
 """k-nearest neighbors classification with two interchangeable engines.
 
 backend="numpy": built on top of existing libraries. Distances come from one
-big matrix multiply, which NumPy hands to Apple Accelerate (or whatever BLAS
-it was built with); neighbor selection uses np.argpartition.
+big matrix multiply, which NumPy hands to its BLAS (Apple Accelerate on
+macOS, OpenBLAS in Linux wheels); neighbor selection uses np.argpartition.
 
 backend="rust": a from-scratch compiled engine (src/lib.rs). Tiled distance
 loops written for SIMD, every core via rayon, and the GIL released.
 
 backend="rust-blas": the same Rust engine, except each tile of distance math
-is one Apple Accelerate matrix multiply (macOS only). It separates "Rust is
-faster" from "the chip's matrix hardware is faster".
+is one call to a tuned matrix multiply: Apple Accelerate on macOS (which can
+use the chip's matrix units), the pure-Rust matrixmultiply crate elsewhere.
+It separates "Rust is faster" from "a tuned multiply is faster".
 
-backend="mlx": pure Python on the Apple GPU through MLX. Same math as the
+backend="mlx": pure Python on the Apple GPU through MLX (optional; on Linux,
+MLX's CPU build runs instead if installed). Same math as the
 NumPy engine (one matrix multiply, then a partial sort), but every step runs
 on the GPU and the CPU and GPU share memory, so nothing is copied.
 

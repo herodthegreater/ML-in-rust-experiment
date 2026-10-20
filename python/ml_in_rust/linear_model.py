@@ -3,9 +3,9 @@
 Ridge has a closed-form answer: solve (X^T X + alpha I) w = X^T y. Nearly all
 the work is the single n x d by d x n multiply that builds X^T X; the solve
 afterwards is a tiny d x d problem. A Rust engine would just call the same
-Accelerate multiply, so there is nothing for compiled code to add.
+BLAS multiply NumPy uses, so there is nothing for compiled code to add.
 
-backend="numpy": X^T X on Accelerate, centering X one cache-sized chunk at a
+backend="numpy": X^T X on NumPy's BLAS, centering X one cache-sized chunk at a
 time (never a full copy) and adding chunks into a float64 total.
 backend="mlx": the same, with the big multiply on the Apple GPU.
 """

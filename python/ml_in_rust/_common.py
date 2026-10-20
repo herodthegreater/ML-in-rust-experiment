@@ -10,6 +10,14 @@ def mlx():
     return mx
 
 
+def mlx_available():
+    try:
+        import mlx.core  # noqa: F401
+    except ImportError:
+        return False
+    return True
+
+
 def check_backend(backend, allowed):
     if backend not in allowed:
         raise ValueError(f"backend must be one of {allowed}, got {backend!r}")

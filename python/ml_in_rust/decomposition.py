@@ -3,9 +3,9 @@
 For tall data (many more rows than features) PCA is: build the d x d
 covariance matrix with one big multiply, then take its eigenvectors, which is
 cheap because d is small. Like Ridge, the cost is one multiply that a Rust
-engine could only hand to the same Accelerate routine.
+engine could only hand to the same BLAS routine NumPy uses.
 
-backend="numpy": X^T X on Accelerate, centering X one cache-sized chunk at a
+backend="numpy": X^T X on NumPy's BLAS, centering X one cache-sized chunk at a
 time (never a full copy) and adding chunks into a float64 total.
 backend="mlx": the same, with the big multiply on the Apple GPU.
 

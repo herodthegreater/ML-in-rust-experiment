@@ -1,8 +1,8 @@
 //! k-means (Lloyd's algorithm), the whole loop in Rust.
 //!
 //! Each iteration splits the rows into blocks that run in parallel. A block
-//! scores its rows against every centroid with one Accelerate matrix
-//! multiply, picks the nearest centroid, and adds the row into that block's
+//! scores its rows against every centroid with one tuned matrix multiply
+//! (gemm.rs), picks the nearest centroid, and adds the row into that block's
 //! running sums, all in one pass over the data. The per-block sums are then
 //! combined, in a fixed order so results are reproducible, into the new
 //! centroids. Python is only touched at the start and the end.
@@ -13,7 +13,7 @@ use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use rayon::prelude::*;
 
-use crate::accelerate;
+use crate::gemm;
 
 const ROW_BLOCK: usize = 2048;
 
@@ -48,7 +48,7 @@ fn assign(x: &[f32], x_sq: &[f32], centers: &[f32], labels: &mut [i64], d: usize
         .map(|((lab, rows), rows_sq)| {
             let m = lab.len();
             let mut dots = vec![0.0f32; m * k];
-            accelerate::gemm_abt(rows, centers, &mut dots, m, k, d);
+            gemm::gemm_abt(rows, centers, &mut dots, m, k, d);
             let mut p = Partial::zero(k, d);
             for r in 0..m {
                 let mut best = 0;

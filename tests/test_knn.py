@@ -3,7 +3,7 @@ import pytest
 from sklearn.datasets import load_iris, make_classification
 from sklearn.neighbors import KNeighborsClassifier as SkKNN
 
-from autoalgo import KNeighborsClassifier
+from ml_in_rust import KNeighborsClassifier
 
 BACKENDS = ["numpy", "rust", "rust-blas", "mlx"]
 

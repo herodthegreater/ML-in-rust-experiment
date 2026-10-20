@@ -1,4 +1,4 @@
-"""Quick KNN race: scikit-learn vs every autoalgo engine on Covertype.
+"""Quick KNN race: scikit-learn vs every this project engine on Covertype.
 
 Run with the project's .venv interpreter after `maturin develop --release`.
 Change TRAIN_ROWS to race at a different size (max 579,012).
@@ -10,13 +10,13 @@ import numpy as np
 from sklearn.datasets import fetch_covtype
 from sklearn.neighbors import KNeighborsClassifier as SkKNN
 
-from autoalgo import KNeighborsClassifier
+from ml_in_rust import KNeighborsClassifier, available_backends
 
 TRAIN_ROWS = 200_000
 QUERIES = 2_000
 K = 5
 
-data = fetch_covtype(data_home="bench/data")
+data = fetch_covtype(data_home="data")
 X = data.data.astype(np.float32)
 X = (X - X.mean(0)) / X.std(0)
 order = np.random.default_rng(0).permutation(len(X))
@@ -26,11 +26,12 @@ Xtr, ytr = X[QUERIES : QUERIES + TRAIN_ROWS], y[QUERIES : QUERIES + TRAIN_ROWS]
 
 engines = {
     "sklearn": SkKNN(n_neighbors=K, n_jobs=-1),
-    "autoalgo-numpy": KNeighborsClassifier(K, backend="numpy"),
-    "autoalgo-rust": KNeighborsClassifier(K, backend="rust"),
-    "autoalgo-rust-blas": KNeighborsClassifier(K, backend="rust-blas"),
-    "autoalgo-mlx": KNeighborsClassifier(K, backend="mlx"),
+    "numpy": KNeighborsClassifier(K, backend="numpy"),
+    "rust": KNeighborsClassifier(K, backend="rust"),
+    "rust-blas": KNeighborsClassifier(K, backend="rust-blas"),
+    "mlx": KNeighborsClassifier(K, backend="mlx"),
 }
+engines = {k: v for k, v in engines.items() if k == "sklearn" or k in available_backends()}
 
 print(f"{len(Xtr):,} training rows, {QUERIES:,} queries, k={K}\n")
 print(f"{'engine':<20}{'predict':>12}{'vs sklearn':>12}{'accuracy':>10}")

@@ -9,7 +9,7 @@
 use numpy::prelude::*;
 use numpy::{PyArray1, PyReadonlyArray1, PyReadonlyArray2};
 
-use crate::accelerate;
+use crate::gemm;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use rayon::prelude::*;
@@ -161,7 +161,7 @@ const BLAS_TILE: usize = 4096;
 const BLAS_QUERY_BLOCK: usize = 128;
 
 /// Same result as `predict_block`, but each tile of dot products is one
-/// Accelerate matrix multiply; Rust only does the top-k scan and the vote.
+/// tuned matrix multiply (see gemm.rs); Rust only does the top-k scan and the vote.
 fn predict_block_blas(
     train: &[f32],
     sq: &[f32],
@@ -180,7 +180,7 @@ fn predict_block_blas(
     for tile_start in (0..n_train).step_by(BLAS_TILE) {
         let tile_end = (tile_start + BLAS_TILE).min(n_train);
         let nt = tile_end - tile_start;
-        accelerate::gemm_abt(queries, &train[tile_start * d..tile_end * d], &mut dots, nq, nt, d);
+        gemm::gemm_abt(queries, &train[tile_start * d..tile_end * d], &mut dots, nq, nt, d);
         for (q, top) in tops.iter_mut().enumerate() {
             let row = &dots[q * nt..(q + 1) * nt];
             for (t, &v) in row.iter().enumerate() {
@@ -196,7 +196,7 @@ fn predict_block_blas(
 }
 
 /// Predict class indices for `x_query` from a fitted training set.
-/// `use_blas` routes the distance math through Apple Accelerate (macOS only).
+/// `use_blas` routes the distance math through the tuned multiply in gemm.rs.
 #[pyfunction]
 #[pyo3(signature = (x_train, sq_norms, y, n_classes, x_query, k, use_blas=false))]
 pub fn knn_predict<'py>(
@@ -209,9 +209,6 @@ pub fn knn_predict<'py>(
     k: usize,
     use_blas: bool,
 ) -> PyResult<Bound<'py, PyArray1<i64>>> {
-    if use_blas && !accelerate::AVAILABLE {
-        return Err(PyValueError::new_err("the Accelerate path is only available on macOS"));
-    }
     let d = x_train.shape()[1];
     let n_train = x_train.shape()[0];
     if x_query.shape()[1] != d {

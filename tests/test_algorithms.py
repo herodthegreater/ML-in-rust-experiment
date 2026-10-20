@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA as SkPCA
 from sklearn.linear_model import Ridge as SkRidge
 from sklearn.tree import DecisionTreeClassifier as SkTree
 
-import autoalgo as aa
+import ml_in_rust as mr
 
 
 @pytest.fixture(scope="module")
@@ -34,7 +34,7 @@ def regression():
 def test_kmeans_matches_sklearn(blobs, backend):
     X, init = blobs
     ref = SkKMeans(6, init=init, n_init=1, max_iter=100, tol=0, algorithm="lloyd").fit(X)
-    ours = aa.KMeans(6, init=init, max_iter=100, backend=backend).fit(X)
+    ours = mr.KMeans(6, init=init, max_iter=100, backend=backend).fit(X)
     # scikit-learn itself is not bit-reproducible across processes: its threads
     # add up centroid sums in whatever order they finish, and on this data it
     # lands on one of two answers that differ by ~9 boundary points. So the
@@ -48,7 +48,7 @@ def test_kmeans_matches_sklearn(blobs, backend):
 @pytest.mark.parametrize("backend", ["numpy", "rust", "mlx"])
 def test_kmeans_is_reproducible(blobs, backend):
     X, init = blobs
-    runs = [aa.KMeans(6, init=init, max_iter=100, backend=backend).fit(X) for _ in range(3)]
+    runs = [mr.KMeans(6, init=init, max_iter=100, backend=backend).fit(X) for _ in range(3)]
     for r in runs[1:]:
         assert np.array_equal(r.labels_, runs[0].labels_)
         assert np.array_equal(r.cluster_centers_, runs[0].cluster_centers_)
@@ -63,7 +63,7 @@ def test_kmeans_overlapping_clusters_reach_an_equally_good_answer(backend):
     X = X.astype(np.float32)
     init = X[np.random.default_rng(0).choice(len(X), 6, replace=False)]
     ref = SkKMeans(6, init=init, n_init=1, max_iter=100, tol=0, algorithm="lloyd").fit(X)
-    ours = aa.KMeans(6, init=init, max_iter=100, backend=backend).fit(X)
+    ours = mr.KMeans(6, init=init, max_iter=100, backend=backend).fit(X)
     assert np.mean(ours.labels_ == ref.labels_) >= 0.99
     assert ours.inertia_ == pytest.approx(ref.inertia_, rel=1e-5)
 
@@ -71,15 +71,15 @@ def test_kmeans_overlapping_clusters_reach_an_equally_good_answer(backend):
 @pytest.mark.parametrize("backend", ["numpy", "rust", "mlx"])
 def test_kmeans_stops_at_max_iter_with_consistent_labels(blobs, backend):
     X, init = blobs
-    m = aa.KMeans(6, init=init, max_iter=2, backend=backend).fit(X)
+    m = mr.KMeans(6, init=init, max_iter=2, backend=backend).fit(X)
     assert m.n_iter_ == 2
     assert np.array_equal(m.predict(X), m.labels_)
 
 
 def test_kmeans_default_init_is_seeded():
     X, _ = make_blobs(2000, n_features=4, centers=3, random_state=2)
-    a = aa.KMeans(3, random_state=7, backend="rust").fit(X)
-    b = aa.KMeans(3, random_state=7, backend="numpy").fit(X)
+    a = mr.KMeans(3, random_state=7, backend="rust").fit(X)
+    b = mr.KMeans(3, random_state=7, backend="numpy").fit(X)
     assert np.mean(a.labels_ == b.labels_) >= 0.999
 
 
@@ -90,7 +90,7 @@ def test_kmeans_default_init_is_seeded():
 def test_ridge_matches_sklearn(regression, backend, fit_intercept):
     X, y = regression
     ref = SkRidge(alpha=2.0, fit_intercept=fit_intercept).fit(X, y)
-    ours = aa.Ridge(alpha=2.0, fit_intercept=fit_intercept, backend=backend).fit(X, y)
+    ours = mr.Ridge(alpha=2.0, fit_intercept=fit_intercept, backend=backend).fit(X, y)
     assert np.allclose(ours.coef_, ref.coef_, atol=2e-3)
     assert ours.intercept_ == pytest.approx(ref.intercept_, abs=2e-2)
     assert np.allclose(ours.predict(X[:50]), ref.predict(X[:50]), atol=5e-2)
@@ -106,7 +106,7 @@ def test_ridge_at_least_as_accurate_as_sklearn(backend):
     Xc = X64 - X64.mean(0)
     exact = np.linalg.solve(Xc.T @ Xc + np.eye(40), Xc.T @ (y64 - y64.mean()))
     sk_err = np.abs(SkRidge(1.0).fit(X, y).coef_ - exact).max()
-    our_err = np.abs(aa.Ridge(1.0, backend=backend).fit(X, y).coef_ - exact).max()
+    our_err = np.abs(mr.Ridge(1.0, backend=backend).fit(X, y).coef_ - exact).max()
     assert our_err <= sk_err
 
 
@@ -116,7 +116,7 @@ def test_ridge_at_least_as_accurate_as_sklearn(backend):
 def test_pca_matches_sklearn(regression, backend):
     X, _ = regression
     ref = SkPCA(8, svd_solver="full").fit(X)
-    ours = aa.PCA(8, backend=backend).fit(X)
+    ours = mr.PCA(8, backend=backend).fit(X)
     assert np.allclose(ours.explained_variance_, ref.explained_variance_, rtol=1e-3)
     assert np.allclose(ours.explained_variance_ratio_, ref.explained_variance_ratio_, rtol=1e-3)
     # Eigenvectors are only defined up to sign; each pair must point the same way or exactly opposite.
@@ -130,8 +130,8 @@ def test_pca_matches_sklearn(regression, backend):
 @pytest.mark.parametrize("min_leaf", [1, 20])
 def test_tree_engines_grow_identical_trees(max_depth, min_leaf):
     X, y = make_classification(6000, 15, n_informative=6, n_classes=3, random_state=3)
-    a = aa.DecisionTreeClassifier(max_depth, min_samples_leaf=min_leaf, backend="numpy").fit(X, y)
-    b = aa.DecisionTreeClassifier(max_depth, min_samples_leaf=min_leaf, backend="rust").fit(X, y)
+    a = mr.DecisionTreeClassifier(max_depth, min_samples_leaf=min_leaf, backend="numpy").fit(X, y)
+    b = mr.DecisionTreeClassifier(max_depth, min_samples_leaf=min_leaf, backend="rust").fit(X, y)
     for key in a.tree_:
         assert np.array_equal(a.tree_[key], b.tree_[key]), key
     assert np.array_equal(a.predict(X), b.predict(X))
@@ -141,7 +141,7 @@ def test_tree_engines_grow_identical_trees(max_depth, min_leaf):
 def test_tree_accuracy_close_to_sklearn(backend):
     X, y = make_classification(20000, 20, n_informative=8, n_classes=4, random_state=0)
     ref = SkTree(max_depth=8, random_state=0).fit(X[:16000], y[:16000]).score(X[16000:], y[16000:])
-    ours = aa.DecisionTreeClassifier(8, backend=backend).fit(X[:16000], y[:16000]).score(X[16000:], y[16000:])
+    ours = mr.DecisionTreeClassifier(8, backend=backend).fit(X[:16000], y[:16000]).score(X[16000:], y[16000:])
     assert ours >= ref - 0.02
 
 
@@ -149,7 +149,7 @@ def test_tree_accuracy_close_to_sklearn(backend):
 def test_tree_fits_iris_perfectly_and_handles_strings(backend):
     X, y = load_iris(return_X_y=True)
     names = np.array(["setosa", "versicolor", "virginica"])[y]
-    m = aa.DecisionTreeClassifier(None, backend=backend).fit(X, names)
+    m = mr.DecisionTreeClassifier(None, backend=backend).fit(X, names)
     assert m.score(X, names) == 1.0
     assert m.predict(X[0])[0] == "setosa"
 
@@ -157,12 +157,12 @@ def test_tree_fits_iris_perfectly_and_handles_strings(backend):
 @pytest.mark.parametrize("backend", ["numpy", "rust"])
 def test_tree_single_class_is_one_leaf(backend):
     X = np.random.default_rng(0).standard_normal((50, 3))
-    m = aa.DecisionTreeClassifier(5, backend=backend).fit(X, np.zeros(50))
+    m = mr.DecisionTreeClassifier(5, backend=backend).fit(X, np.zeros(50))
     assert m.node_count == 1
     assert (m.predict(X) == 0).all()
 
 
 def test_bad_backends_are_rejected():
-    for cls, bad in [(aa.KMeans, "gpu"), (aa.Ridge, "rust"), (aa.PCA, "rust"), (aa.DecisionTreeClassifier, "mlx")]:
+    for cls, bad in [(mr.KMeans, "gpu"), (mr.Ridge, "rust"), (mr.PCA, "rust"), (mr.DecisionTreeClassifier, "mlx")]:
         with pytest.raises(ValueError):
             cls(backend=bad)

@@ -1,0 +1,5 @@
+# Compile for the CPU doing the benchmark (AVX2 on modern Intel, full NEON on
+# Apple Silicon), the same way NumPy and OpenBLAS pick kernels at runtime.
+# Without this, x86 builds only use the baseline SSE2 instructions.
+[build]
+rustflags = ["-C", "target-cpu=native"]

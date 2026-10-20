@@ -4,4 +4,5 @@ __pycache__/
 *.so
 *.egg-info/
 .pytest_cache/
-bench/data/
+data/
+.DS_Store

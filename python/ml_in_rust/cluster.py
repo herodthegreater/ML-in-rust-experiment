@@ -1,11 +1,11 @@
 """k-means clustering (Lloyd's algorithm) with three engines.
 
 backend="numpy": built on top of NumPy. Distances to the centroids are one
-matrix multiply on Accelerate; centroid sums use np.bincount per feature.
+matrix multiply on NumPy's BLAS; centroid sums use np.bincount per feature.
 
 backend="rust": the whole loop runs in Rust (src/kmeans.rs). Each block of
-rows is scored with one Accelerate multiply, assigned, and summed in the same
-pass, across every core.
+rows is scored with one tuned matrix multiply (Accelerate on macOS,
+matrixmultiply elsewhere), assigned, and summed in the same pass, on every core.
 
 backend="mlx": pure Python on the Apple GPU. Distances and centroid sums are
 both matrix multiplies (sums via a one-hot matrix), so everything stays on

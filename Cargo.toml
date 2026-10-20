@@ -1,5 +1,5 @@
 [package]
-name = "autoalgo"
+name = "ml-in-rust-experiment"
 version = "0.2.0"
 edition = "2021"
 
@@ -11,6 +11,9 @@ crate-type = ["cdylib"]
 pyo3 = { version = "0.25", features = ["extension-module"] }
 numpy = "0.25"
 rayon = "1.10"
+
+[target.'cfg(not(target_os = "macos"))'.dependencies]
+matrixmultiply = "0.3"
 
 [profile.release]
 opt-level = 3
